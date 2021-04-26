@@ -181,6 +181,9 @@ function getFinalResult() {
     if (crits >= 2) {
       return "Crit Success!";
     }
+    if (successes == 0) {
+      return "Fail";
+    }
     return "Success: " + successes;
   }
   return "and I oop";
