@@ -1,0 +1,137 @@
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  color: black;
+  background-color: white;
+  font-family: "Crimson Text", serif;
+  width: 100%;
+  text-align: center;
+}
+
+.table {
+  display: flex;
+  background-color: rgba(255, 255, 255, 0.8);
+  flex-direction: column;
+  align-items: center;
+  padding: 1em 0.5em;
+  margin: 2em;
+}
+
+label,
+table,
+p,
+tr {
+  text-transform: uppercase;
+  color: black;
+  text-align: center;
+  font-size: 13px;
+}
+
+main {
+  flex: 1 0 auto;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+input:not([type]):focus:not([readonly]),
+input[type="number"]:not(.browser-default):focus:not([readonly]),
+textarea.materialize-textarea:focus:not([readonly]) {
+  border-bottom: 1px solid #f44336 !important;
+  -webkit-box-shadow: 0 1px 0 0 #f44336 !important;
+  box-shadow: 0 1px 0 0 #f44336 !important;
+}
+
+button:focus {
+  background-color: #f44336;
+}
+
+span,
+h1,
+h2,
+h3,
+ul,
+nav {
+  color: black;
+  text-align: center;
+}
+
+footer.page-footer {
+  padding-top: 0;
+  text-align: right;
+  background-color: rgba(255, 255, 255, 0.8);
+  font-family: "Crimson Text", serif;
+}
+
+nav .brand-logo {
+  padding: 0 1em;
+}
+
+a:hover {
+  color: #b9a36c;
+}
+
+.gold {
+  color: #b9a36c;
+}
+
+.suntory {
+  background-color: black;
+  background-image: url("https://assets.dicebreaker.com/vampire-the-masquerade-fifth-edition-rpg.jpg/BROK/resize/1200x1200%3E/format/jpg/quality/70/vampire-the-masquerade-fifth-edition-rpg.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.index {
+  background-color: rgb(51, 51, 51);
+}
+
+.about-heading {
+  background-color: rgb(0, 0, 0);
+  padding: 0.2em;
+  color: black;
+  font-weight: 800;
+  margin: 0 auto; /* Center the text container */
+  position: absolute; /* Position text */
+  top: 50%; /* Position text in the middle */
+  left: 50%; /* Position text in the middle */
+  transform: translate(-50%, -50%);
+  mix-blend-mode: screen;
+}
+
+.btn,
+.btn-large,
+.btn-small {
+  text-decoration: none;
+  color: #000;
+  background-color: #fff;
+  border-radius: 0px;
+  border: 1px solid black;
+  text-transform: uppercase;
+  font-family: "Crimson Text", serif;
+  margin: 2ex;
+}
+
+.btn:hover,
+.btn-large:hover,
+.btn-small:hover {
+  background-color: #f44336;
+  color: #fff;
+}
+
+.form-container {
+  /* background-image: url("https://geekandsundry.com/wp-content/uploads/2016/08/VTM-FI.png"); */
+  background-size: cover;
+  position: relative;
+  background-size: cover;
+  background-position: center;
+}
+
+.user-defined {
+  visibility: hidden;
+}
+
+img {
+  max-width: 5em;
+}
