@@ -9,12 +9,17 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <meta charset="UTF-8">
     <script defer src="main.js"></script>
   </head>
   <body class="suntory form-container">
     <main class="center-align valign-wrapper">
+      
       <div class="form-container table">
+        <div class="close-btn">
+          <div class="btn-floating btn-small red accent-4" style="display: none;" id="close-btn"><i class="material-icons">close</i></div>
+        </div>
       <div class="card" id="dice-selector">
         <h4>Dice:</h4>
         <div type="button" value="VtM Dice" id="vtm-dice-btn" class="btn red accent-3">
@@ -59,7 +64,7 @@
               <div>
                 
                   <input type="submit" value="submit" class="btn red  " id="submit" />
-                
+                  <div class="btn red accent-4" id="reroll" style="display: none;"><i class="material-icons">whatshot</i></div>
               </div>
       </div>
         <table class="card col s12" >

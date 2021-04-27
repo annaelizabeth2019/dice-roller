@@ -135,3 +135,9 @@ a:hover {
 img {
   max-width: 5em;
 }
+
+.close-btn {
+  display: flex;
+  flex-direction: row-reverse;
+  width: -webkit-fill-available;
+}
