@@ -141,3 +141,8 @@ img {
   flex-direction: row-reverse;
   width: -webkit-fill-available;
 }
+
+.card-image {
+  max-width: 3em;
+  margin: 0 auto;
+}
