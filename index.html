@@ -3,73 +3,133 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Dice Roller</title>
     <link rel="stylesheet" href="style.css" />
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <meta charset="UTF-8" />
     <script defer src="main.js"></script>
   </head>
   <body class="suntory form-container">
     <main class="center-align valign-wrapper">
-      
       <div class="form-container table">
         <div class="close-btn">
-          <div class="btn-floating btn-small red accent-4" style="display: none;" id="close-btn"><i class="material-icons">close</i></div>
+          <div
+            class="btn-floating btn-small red accent-4"
+            style="display: none"
+            id="close-btn"
+          >
+            <i class="material-icons">close</i>
+          </div>
         </div>
-      <div class="card" id="dice-selector">
-        <h4>Dice:</h4>
-        <div type="button" value="VtM Dice" id="vtm-dice-btn" class="btn red accent-3">
-          Roll VtM Dice
+        <div class="card" id="dice-selector">
+          <h4>Dice:</h4>
+          <div
+            type="button"
+            value="VtM Dice"
+            id="vtm-dice-btn"
+            class="btn red accent-3"
+          >
+            Roll VtM Dice
+          </div>
+          <div
+            type="button"
+            value="Use My Own Dice"
+            id="other-dice-btn"
+            class="btn red accent-3"
+          >
+            Create My Own Dice
+          </div>
         </div>
-        <div type="button" value="Use My Own Dice" id="other-dice-btn" class="btn red accent-3">
-          Create My Own Dice
-        </div>
-      </div>
-      <div id="dice-form card">
-        <div class="hoverable valign-wrapper" id="form">
-          <div id="vtm-input-fields" class="center-align vtm" style="display: none;">
-                <label for="hunger">Hunger:<input type="number" id="hunger" value="1" class="center-align vtm"></label>              
-                <label for="dice-pool">Dice Pool:<input type="number" id="dice-pool" value="0" class="center-align vtm"></label>
+        <div id="dice-form card">
+          <div class="hoverable valign-wrapper" id="form">
+            <div
+              id="vtm-input-fields"
+              class="center-align vtm"
+              style="display: none"
+            >
+              <label for="hunger"
+                >Hunger:<input
+                  type="number"
+                  id="hunger"
+                  value="1"
+                  class="center-align vtm"
+              /></label>
+              <label for="dice-pool"
+                >Dice Pool:<input
+                  type="number"
+                  id="dice-pool"
+                  value="0"
+                  class="center-align vtm"
+              /></label>
             </div>
 
-            <div class="user-defined" style="display: none;">
-  
-              <div>
-                <label for="numSides">Number of Sides:</label><input type="number" />
+            <div class="user-defined" style="display: none">
+              <div class="user-defined">
+                <label for="numSides" class="user-defined"
+                  >Number of Sides:</label
+                ><input type="number" />
               </div>
-                
-              <div>
-                <label for="numTimesThisDice">Number of Times to Roll this Dice:</label>
-                <input type="number" />
+
+              <div class="user-defined">
+                <label for="numTimesThisDice" class="user-defined"
+                  >Number of Times to Roll this Dice:</label
+                >
+                <input type="number" class="user-defined" />
               </div>
-  
-              <div>
-                <input type="button" value="ADD ANOTHER DIE" id="add-dice">ADD DICE</input>
-              </div>              
-                <!-- SIDE INFO WILL GO HERE -->
+
+              <!-- <div class="user-defined">
+                <input
+                  class="user-defined"
+                  type="button"
+                  value="ADD ANOTHER"
+                  id="add-dice"
+                />
+              </div> -->
+              <!-- SIDE INFO WILL GO HERE -->
             </div>
-            <div class="user-defined" style="display: none;">
+            <div class="user-defined" style="display: none">
               <div>
-                <div class="btn user-defined">DELETE DIE</div>
-              </div> 
-              <div id=die-0-sides class="user-defined">sides: 0</div>
-              <div id=die-0-times class="user-defined">times to roll: 0</div>
+                <div class="btn user-defined">
+                  <i class="material-icons">delete</i>
+                </div>
+              </div>
+              <!-- <div id="die-0-sides" class="user-defined">sides: 0</div>
+              <div id="die-0-times" class="user-defined">times to roll: 0</div> -->
             </div>
-  
           </div>
-              <div>
-                
-                  <input type="submit" value="submit" class="btn red  " id="submit" />
-                  <div class="btn red accent-4 vtm" id="rerollVTM" style="display: none;"><i class="material-icons">whatshot</i></div>
-              </div>
-      </div>
-        <table class="card col s12" >
-          <tbody id="results" style="display: none;" >
-          </tbody>
+          <div>
+            <input type="submit" value="submit" class="btn red" id="submit" />
+            <div
+              class="btn red accent-4 user-defined"
+              id="add-new-die"
+              style="display: none"
+            >
+              <i class="material-icons">add</i>
+            </div>
+            <div
+              class="btn red accent-4 vtm"
+              id="reroll-vtm"
+              style="display: none"
+            >
+              <i class="material-icons">whatshot</i>
+            </div>
+          </div>
+        </div>
+        <table class="card col s12">
+          <tbody id="results" style="display: none"></tbody>
         </table>
         <div id="results-final" class="vtm"></div>
       </div>
