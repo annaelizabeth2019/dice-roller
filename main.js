@@ -1,3 +1,16 @@
+// variables
+let diceObj, diceResults, finalResult;
+let canReroll = false;
+let isVtM = false;
+let isUserDefined = false;
+let otherDice = [
+  {
+    sides: 5,
+    returnNumericValue: true,
+  },
+];
+
+// constants
 const vtmDice = [
   "critical",
   "failure",
@@ -22,23 +35,22 @@ const vtmHungerDice = [
   "success",
   "success",
 ];
-let diceObj, isVtM, diceResults, finalResult;
-let canReroll = false;
-
-// document items
-let submitBtn = document.getElementById("submit");
-let vtmDiceBtn = document.getElementById("vtm-dice-btn");
-let otherDiceBtn = document.getElementById("other-dice-btn");
-let results = document.getElementById("results");
-let resultsFinalEl = document.getElementById("results-final");
-let diceSelectorEl = document.getElementById("dice-selector");
-let rerollBtn = document.getElementById("reroll");
-let closeBtn = document.getElementById("close-btn");
-let vtmArr = Array.from(document.getElementsByClassName("vtm"));
+const submitBtn = document.getElementById("submit");
+const vtmDiceBtn = document.getElementById("vtm-dice-btn");
+const otherDiceBtn = document.getElementById("other-dice-btn");
+const results = document.getElementById("results");
+const resultsFinalEl = document.getElementById("results-final");
+const diceSelectorEl = document.getElementById("dice-selector");
+const burnAWillpower = document.getElementById("rerollVTM");
+const closeBtn = document.getElementById("close-btn");
+const vtmArr = Array.from(document.getElementsByClassName("vtm"));
+const userDefinedArr = Array.from(
+  document.getElementsByClassName("user-defined")
+);
 
 // event listeners
 submitBtn.addEventListener("click", submit);
-rerollBtn.addEventListener("click", reroll);
+burnAWillpower.addEventListener("click", rerollVTM);
 closeBtn.addEventListener("click", init);
 vtmDiceBtn.addEventListener("click", () => {
   isVtM = true;
@@ -47,6 +59,7 @@ vtmDiceBtn.addEventListener("click", () => {
 
 otherDiceBtn.addEventListener("click", () => {
   isVtM = false;
+  isUserDefined = true;
   render();
 });
 // functions
@@ -58,19 +71,33 @@ function render() {
       v.style = "display: none;";
     });
   }
+  if (!isUserDefined) {
+    userDefinedArr.forEach((v) => {
+      v.style = "display: none;";
+    });
+  }
+  if (isVtM || isUserDefined) {
+    diceSelectorEl.style = "display:none;";
+    submitBtn.style = "inline-block;";
+    closeBtn.style = "display: inline-block";
+  }
   if (isVtM) {
     vtmArr.forEach((v) => {
       v.style = "display: initial;";
     });
-    diceSelectorEl.style = "display:none;";
-    submitBtn.style = "inline-block;";
-    closeBtn.style = "display: inline-block";
     if (canReroll) {
-      rerollBtn.style = "display: inline-block;";
+      burnAWillpower.style = "display: inline-block;";
       canReroll = false;
       return;
     }
-    rerollBtn.style = "display: none;";
+    burnAWillpower.style = "display: none;";
+    return;
+  }
+  if (isUserDefined) {
+    userDefinedArr.forEach((v) => {
+      v.style = "display: block;";
+    });
+
     return;
   }
   submitBtn.style = "display: none;";
@@ -81,6 +108,7 @@ function render() {
 function init() {
   diceResults = [];
   isVtM = false;
+  isUserDefined = false;
   canReroll = false;
   diceObj = {
     hungerDice: {
@@ -102,45 +130,7 @@ function renderResults() {
   if (isVtM) {
     let image = "";
     if (diceResults.length > 0) {
-      innerHTML = diceResults.map((d, i) => {
-        let image = "";
-        let text = d;
-        switch (d) {
-          case "failure":
-            image = "imgs/fail.png";
-            break;
-          case "success":
-            image = "imgs/success.png";
-            break;
-          case "critical hunger":
-            image = "imgs/beast.png";
-            text = "critical";
-            break;
-          case "bestial failure":
-            image = "imgs/grave-fail.png";
-            text = "bestial<br />failure";
-            break;
-          case "critical":
-            image = "imgs/fang-icon.png";
-        }
-        if (i < diceObj.hungerDice.qty) {
-          return `
-        <td class="vtm hunger-dice card col red accent-3 center-align" id="die-${i}-results">
-        <p class="vtm center-align">${text}</p><img src="${image}" alt="${d}" class="card-image center-align">
-        </td>
-        `;
-        }
-        return `
-        <td class="vtm dice card col center-align" id="die-${i}-results">
-        <p class="vtm center-align">${text}</p><img src="${image}" alt="${d}" class="vtm card-image center-align">
-        </td>
-        `;
-      });
-      if (innerHTML.length > 5) {
-        innerHTML.splice(4, 0, `<tr class="vtm">`);
-        innerHTML.push("</tr>");
-      }
-      results.style = "display: table-row-group;";
+      innerHTML = vtmDiceResultsInnerHTML();
       switch (finalResult) {
         case "success":
           image = "success-cat.png";
@@ -168,8 +158,64 @@ function renderResults() {
   results.innerHTML = innerHTML.join(" ");
 }
 
+// VTM FUNCTIONS
+
+function vtmDiceResultsInnerHTML() {
+  let innerHTML = [];
+  innerHTML = diceResults.map((d, i) => {
+    let image = "";
+    let text = d;
+    switch (d) {
+      case "failure":
+        image = "imgs/fail.png";
+        break;
+      case "success":
+        image = "imgs/success.png";
+        break;
+      case "critical hunger":
+        image = "imgs/beast.png";
+        text = "critical";
+        break;
+      case "bestial failure":
+        image = "imgs/grave-fail.png";
+        text = "bestial<br />failure";
+        break;
+      case "critical":
+        image = "imgs/fang-icon.png";
+    }
+    if (i < diceObj.hungerDice.qty) {
+      return `
+    <td class="vtm hunger-dice card col red accent-3 center-align" id="die-${i}-results">
+    <p class="vtm center-align">${text}</p><img src="${image}" alt="${d}" class="card-image center-align">
+    </td>
+    `;
+    }
+    return `
+    <td class="vtm dice card col center-align" id="die-${i}-results">
+    <p class="vtm center-align">${text}</p><img src="${image}" alt="${d}" class="vtm card-image center-align">
+    </td>
+    `;
+  });
+  let spliceIndexes = [];
+  for (let i = 0; i < innerHTML.length; i++) {
+    console.log(
+      "checking the thingy",
+      i,
+      innerHTML.length,
+      i < innerHTML.length
+    );
+    if (!(i % 5) && i != 0) {
+      spliceIndexes.push(i);
+    }
+  }
+  spliceIndexes.forEach((v, i) => {
+    innerHTML.splice(v + i, 0, `<tr class="vtm">`);
+  });
+  results.style = "display: table-row-group;";
+  return innerHTML;
+}
+
 function getFinalResult() {
-  console.log(isVtM);
   if (isVtM) {
     let successes = 0;
     let fails = 0;
@@ -195,6 +241,7 @@ function getFinalResult() {
           break;
       }
     });
+    console.log(criticalHunger);
     if ((crits == 1 && !criticalHunger) || (!crits && criticalHunger == 1)) {
       successes += 1; // one pt added to successes when there is only one crit
     }
@@ -204,7 +251,7 @@ function getFinalResult() {
     if (!successes && bestialFailures && !crits && !criticalHunger) {
       return "Bestial Fail!";
     }
-    if ((crits && criticalHunger) || criticalHunger > 2) {
+    if ((crits && criticalHunger) || criticalHunger >= 2) {
       return "Messy Crit!";
     }
     if (crits >= 2) {
@@ -245,7 +292,13 @@ function rollVtMDice(dicepool) {
   return results;
 }
 
-function reroll() {
+// USER GENERATED DICE FUNCTIONs
+
+function rollOtherDice() {
+  let result = [];
+}
+
+function rerollVTM() {
   canReroll = false;
   let times = 0;
   diceResults = diceResults.map((die, i) => {
@@ -276,4 +329,5 @@ function submit() {
   }
   render();
 }
+
 init();
