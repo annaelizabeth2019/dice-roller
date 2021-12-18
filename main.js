@@ -2,13 +2,6 @@
 let diceObj, diceResults, finalResult;
 let canReroll = false;
 let isVtM = true;
-let isUserDefined = false;
-let otherDice = [
-  {
-    sides: 5,
-    returnNumericValue: true,
-  },
-];
 
 // constants
 const vtmDice = [
@@ -36,78 +29,35 @@ const vtmHungerDice = [
   "success",
 ];
 const submitBtn = document.getElementById("submit");
-const vtmDiceBtn = document.getElementById("vtm-dice-btn");
-const otherDiceBtn = document.getElementById("other-dice-btn");
 const results = document.getElementById("results");
 const resultsFinalEl = document.getElementById("results-final");
-const diceSelectorEl = document.getElementById("dice-selector");
 const burnAWillpower = document.getElementById("reroll-vtm");
 const resetBtn = document.getElementById("reset-vtm");
 const vtmArr = Array.from(document.getElementsByClassName("vtm"));
-const userDefinedArr = Array.from(
-  document.getElementsByClassName("user-defined")
-);
 
 // event listeners
 submitBtn.addEventListener("click", submit);
 burnAWillpower.addEventListener("click", rerollVTM);
 resetBtn.addEventListener("click", reset);
-console.log(resetBtn);
-vtmDiceBtn.addEventListener("click", () => {
-  isVtM = true;
-  render();
-});
 
-otherDiceBtn.addEventListener("click", () => {
-  // isVtM = false;
-  isUserDefined = true;
-  render();
-});
 // functions
 function render() {
   finalResult = getFinalResult();
   renderResults();
-  if (!isVtM) {
-    vtmArr.forEach((v) => {
-      v.style = "display: none;";
-    });
-  }
-  if (!isUserDefined) {
-    userDefinedArr.forEach((v) => {
-      v.style = "display: none;";
-    });
-  }
-  if (isVtM || isUserDefined) {
-    diceSelectorEl.style = "display:none;";
-    submitBtn.style = "inline-block;";
-  }
-  if (isVtM) {
-    vtmArr.forEach((v) => {
-      v.style = "display: initial;";
-    });
-    if (canReroll) {
-      burnAWillpower.style = "display: inline-block;";
-      canReroll = false;
-      return;
-    }
-    burnAWillpower.style = "display: none;";
-    return;
-  }
-  if (isUserDefined) {
-    userDefinedArr.forEach((v) => {
-      v.style = "display: block;";
-    });
 
+  if (canReroll) {
+    burnAWillpower.style = "display: inline-block;";
+    canReroll = false;
     return;
   }
+  burnAWillpower.style = "display: none;";
+  return;
+
   submitBtn.style = "display: none;";
-  diceSelectorEl.style = "display: block;";
 }
 
 function init() {
   diceResults = [];
-  // isVtM = false;
-  isUserDefined = false;
   canReroll = false;
   diceObj = {
     hungerDice: {
@@ -125,7 +75,6 @@ function init() {
 function renderResults() {
   let innerHTML = [];
   let resultsFinalInnerHTML = "";
-  console.log("dice results:", diceResults.length > 0);
   if (isVtM) {
     let image = "";
     if (diceResults.length > 0) {
@@ -197,12 +146,6 @@ function vtmDiceResultsInnerHTML() {
   });
   let spliceIndexes = [];
   for (let i = 0; i < innerHTML.length; i++) {
-    console.log(
-      "checking the thingy",
-      i,
-      innerHTML.length,
-      i < innerHTML.length
-    );
     if (!(i % 5) && i != 0) {
       spliceIndexes.push(i);
     }
@@ -240,7 +183,6 @@ function getFinalResult() {
           break;
       }
     });
-    console.log(criticalHunger);
     if ((crits == 1 && !criticalHunger) || (!crits && criticalHunger == 1)) {
       successes += 1; // one pt added to successes when there is only one crit
     }
@@ -291,12 +233,6 @@ function rollVtMDice(dicepool) {
   return results;
 }
 
-// USER GENERATED DICE FUNCTIONs
-
-function rollOtherDice() {
-  let result = [];
-}
-
 function rerollVTM() {
   canReroll = false;
   let times = 0;
@@ -312,7 +248,6 @@ function rerollVTM() {
 
 function reset() {
   diceResults = [];
-  console.log("reset called");
   render();
 }
 
