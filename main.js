@@ -1,7 +1,7 @@
 // variables
 let diceObj, diceResults, finalResult;
 let canReroll = false;
-let isVtM = false;
+let isVtM = true;
 let isUserDefined = false;
 let otherDice = [
   {
@@ -42,7 +42,7 @@ const results = document.getElementById("results");
 const resultsFinalEl = document.getElementById("results-final");
 const diceSelectorEl = document.getElementById("dice-selector");
 const burnAWillpower = document.getElementById("reroll-vtm");
-const closeBtn = document.getElementById("close-btn");
+const resetBtn = document.getElementById("reset-vtm");
 const vtmArr = Array.from(document.getElementsByClassName("vtm"));
 const userDefinedArr = Array.from(
   document.getElementsByClassName("user-defined")
@@ -51,14 +51,15 @@ const userDefinedArr = Array.from(
 // event listeners
 submitBtn.addEventListener("click", submit);
 burnAWillpower.addEventListener("click", rerollVTM);
-closeBtn.addEventListener("click", init);
+resetBtn.addEventListener("click", reset);
+console.log(resetBtn);
 vtmDiceBtn.addEventListener("click", () => {
   isVtM = true;
   render();
 });
 
 otherDiceBtn.addEventListener("click", () => {
-  isVtM = false;
+  // isVtM = false;
   isUserDefined = true;
   render();
 });
@@ -79,7 +80,6 @@ function render() {
   if (isVtM || isUserDefined) {
     diceSelectorEl.style = "display:none;";
     submitBtn.style = "inline-block;";
-    closeBtn.style = "display: inline-block";
   }
   if (isVtM) {
     vtmArr.forEach((v) => {
@@ -102,12 +102,11 @@ function render() {
   }
   submitBtn.style = "display: none;";
   diceSelectorEl.style = "display: block;";
-  closeBtn.style = "display: none;";
 }
 
 function init() {
   diceResults = [];
-  isVtM = false;
+  // isVtM = false;
   isUserDefined = false;
   canReroll = false;
   diceObj = {
@@ -308,6 +307,12 @@ function rerollVTM() {
     times++;
     return rollVtmDie();
   });
+  render();
+}
+
+function reset() {
+  diceResults = [];
+  console.log("reset called");
   render();
 }
 
