@@ -146,7 +146,7 @@ function vtmDiceResultsInnerHTML() {
   });
   let spliceIndexes = [];
   for (let i = 0; i < innerHTML.length; i++) {
-    if (!(i % 5) && i != 0) {
+    if (!(i % 4) && i != 0) {
       spliceIndexes.push(i);
     }
   }
