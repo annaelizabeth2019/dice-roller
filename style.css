@@ -55,9 +55,9 @@ nav {
   /* COLOR FOR NEUTRAL: */
   /* background-color: black; */
   /* VTM (default) */
-  /* background-image: url("https://assets.dicebreaker.com/vampire-the-masquerade-fifth-edition-rpg.jpg/BROK/resize/1200x1200%3E/format/jpg/quality/70/vampire-the-masquerade-fifth-edition-rpg.jpg"); */
+  background-image: url("https://assets.dicebreaker.com/vampire-the-masquerade-fifth-edition-rpg.jpg/BROK/resize/1200x1200%3E/format/jpg/quality/70/vampire-the-masquerade-fifth-edition-rpg.jpg");
   /* CHRISTMAS */
-  background-image: url("https://cdnmetv.metv.com/W6jJe-1513720697-1025-lists-scaryxmas_metv_main.jpg");
+  /* background-image: url("https://cdnmetv.metv.com/W6jJe-1513720697-1025-lists-scaryxmas_metv_main.jpg"); */
   /* NEW YEARS */
   /* background-image: url("https://i.pinimg.com/originals/75/26/cc/7526cc46d8a81c4fb048927b114c199b.jpg"); */
   background-size:cover;
