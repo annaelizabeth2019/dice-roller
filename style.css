@@ -36,6 +36,10 @@ textarea.materialize-textarea:focus:not([readonly]) {
   box-shadow: 0 1px 0 0 #f44336 !important;
 }
 
+.results-msg {
+  display: block;
+}
+
 button:focus {
   background-color: #f44336;
 }
@@ -91,7 +95,7 @@ nav {
 }
 
 img {
-  /* max-width: 3em; */
+  max-width: 5em;
 }
 
 .card-image {
