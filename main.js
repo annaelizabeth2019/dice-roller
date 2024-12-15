@@ -98,7 +98,7 @@ function renderResults() {
         default:
           image = "success-cat.png";
       }
-      resultsFinalInnerHTML = `<div class="vtm valign-wrapper"><span>${finalResult}</span><img class="vtm" src="imgs/${image}" alt="${finalResult}" ></div>`;
+      resultsFinalInnerHTML = `<div class="vtm valign-wrapper"><br />${finalResult}<img class="vtm" src="imgs/${image}" alt="${finalResult}" ></div>`;
       resultsFinalEl.style = "display: block;";
     }
   }
