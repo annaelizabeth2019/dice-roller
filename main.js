@@ -193,10 +193,10 @@ function getFinalResult() {
       return "Bestial Fail!";
     }
     if ((crits && criticalHunger) || criticalHunger >= 2) {
-      return `Messy Crit! (${successes})`;
+      return `Messy Crit! (${successes + crits})`;
     }
     if (crits >= 2) {
-      return `Crit Success! (${successes})`;
+      return `Crit Success! (${successes + crits})`;
     }
     if (successes == 0) {
       return "Fail";
