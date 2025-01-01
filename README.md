@@ -2,6 +2,8 @@
 
 A specialized dice roller for *Vampire: The Masquerade* or similar dice systems, powered by Materialize and vanilla JavaScript. 
 
+[See live on GitHub Pages!](https://annaelizabeth2019.github.io/dice-roller/)
+
 ## Features
 
 - **Custom Dice Rolls**: Simulate rolls for Vampire: The Masquerade dice pools with ease. Set your current hunger and your dice pool and roll away!
