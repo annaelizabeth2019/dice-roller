@@ -21,16 +21,10 @@
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet"
     />
-
-    <!-- <link
-      href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&display=swap"
-      rel="stylesheet"
-    /> -->
     <link
       href="https://fonts.googleapis.com/css2?family=Germania+One&family=UnifrakturCook:wght@700&display=swap"
       rel="stylesheet"
     />
-    <meta charset="UTF-8" />
     <script defer src="main.js"></script>
   </head>
   <body class="background form-container">
@@ -51,30 +45,30 @@
                 >Dice Pool:<input
                   type="number"
                   id="dice-pool"
-                  value="1"
+                  value="0"
                   class="center-align vtm"
               /></label>
             </div>
           </div>
           <div>
-            <div class="btn red" id="submit">
+            <div class="btn red" id="submit" title="submit-button">
               <i class="material-icons">check</i>
             </div>
             <div
               class="btn red accent-4 vtm"
               id="reroll-vtm"
-              style="display: none"
+              title="reroll-button"
             >
               <i class="material-icons">whatshot</i>
             </div>
-            <div class="btn red" id="reset-vtm" style="display: inline-block">
+            <div class="btn red" id="reset-vtm" style="display: inline-block" title="reset-button">
               <i class="material-icons">clear</i>
             </div>
           </div>
         </div>
         <div id="results-final" class="vtm"></div>
         <table class="card col s12">
-          <tbody id="results" style="display: none"></tbody>
+          <tbody id="results"></tbody>
         </table>
         <a href="https://github.com/annaelizabeth2019/dice-roller"><img
             src="https://img.shields.io/github/stars/annaelizabeth2019/dice-roller?style=social" alt="Github Link">
