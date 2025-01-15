@@ -1,4 +1,4 @@
-# Dice Roller App
+# VtM Dice Roller App
 
 A specialized dice roller for *Vampire: The Masquerade* or similar dice systems, powered by Materialize and vanilla JavaScript. 
 
